@@ -1,0 +1,44 @@
+globedit.txt: Use globbing patterns for :edit, :tabedit, etc.
+
+==============================================================================
+INTRODUCTION                                                   *globedit.vim*
+
+globedit.vim adds variants of `:edit` and friends that can take a globbing
+pattern to open multiple files:
+>
+    :Edit plugin/*.vim doc/*.doc
+    :Split ??_*.c
+<
+
+See |wildcards| for a overview of the globbing patterns interpreted by Vim.
+
+Compare this to the default behaviour of `:edit *.vim`, which will either:
+
+- open a file named `*.vim` if there are no matches;
+- open the file if there is exactly one match;
+- error out with `E77: Too many file names ` if there are more than one
+  matches.
+
+==============================================================================
+OPTIONS                                                     *globedit-options*
+
+	let g:multitabs_commands = {
+		\ 'tabedit': '',
+		\ 'edit': '',
+		\ 'split': '',
+		\ 'vsplit': '',
+	\}
+let s:tpl = 'command! -bar -bang -nargs=+ -complete=file %s call globedit#run("%s", [<f-args>])'
+
+==============================================================================
+COMMANDS                                                   *globedit-commands*
+
+fun! globedit#run(cmd, pattern_list, ...)
+
+" cmd:          Command to run (e.g. edit, tabedit, etc.).
+" pattern_list: List of filename patterns to open.
+" ...:          Any other arguments will be eval-ed as-is for every new file
+"               opened right after running cmd.
+
+
+vim:tw=78:ts=8:ft=help:norl:expandtab
