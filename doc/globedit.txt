@@ -9,7 +9,6 @@ pattern to open multiple files:
     :Edit plugin/*.vim doc/*.doc
     :Split ??_*.c
 <
-
 See |wildcards| for a overview of the globbing patterns interpreted by Vim.
 
 Compare this to the default behaviour of `:edit *.vim`, which will either:
@@ -19,26 +18,57 @@ Compare this to the default behaviour of `:edit *.vim`, which will either:
 - error out with `E77: Too many file names ` if there are more than one
   matches.
 
+Based on my answer here, which also lists some other solutions:
+http://vi.stackexchange.com/q/2108/51
+
 ==============================================================================
 OPTIONS                                                     *globedit-options*
 
-	let g:multitabs_commands = {
-		\ 'tabedit': '',
-		\ 'edit': '',
-		\ 'split': '',
-		\ 'vsplit': '',
-	\}
-let s:tpl = 'command! -bar -bang -nargs=+ -complete=file %s call globedit#run("%s", [<f-args>])'
+*g:multitabs_commands*                                   (Boolean, default: 1)
+
+        Which commands to make; this is a dict where the key is the Vim
+        command name and the option value is the {command} to use. If the
+        value is an empty string a default is used.
+
+        The new command is the same as the Vim command with the first letter
+        converted to uppercase.
+
+        default value: >
+            let g:multitabs_commands = {
+                \ 'tabedit': '',
+                \ 'edit': '',
+                \ 'split': '',
+                \ 'vsplit': '',
+            \}
+<
+        Default template is: >
+            command! -bar -bang -nargs=+ -complete=file %s call globedit#run("%s", [<f-args>])
+<
 
 ==============================================================================
 COMMANDS                                                   *globedit-commands*
 
-fun! globedit#run(cmd, pattern_list, ...)
+*:Edit*
+*:Tabedit*
+*:Split*
+*:Vsplit*
 
-" cmd:          Command to run (e.g. edit, tabedit, etc.).
-" pattern_list: List of filename patterns to open.
-" ...:          Any other arguments will be eval-ed as-is for every new file
-"               opened right after running cmd.
+        Like |:edit|, |:tabedit|, |:split|, and |:vsplit|, but will work with
+        any number of globbing patterns. For example: >
+            :Edit a.vim
+            :Edit *.vim
+            :Edit *.vim *.markdown
+<
+
+==============================================================================
+FUNCTIONS                                                 *globedit-functions*
+
+globedit#run({cmd}, {pattern}, {command})                     *globedit#run()*
+        Run Vim command {cmd} for all patterns in the list {pattern}. If no
+        files are found an error is shown.
+        If the optional argument {command} is given then that command will be
+        run with |execute| after opening each file. For example: >
+          call globedit#run('tabedit', ['*.vim'], 'normal! 1G')
 
 
 vim:tw=78:ts=8:ft=help:norl:expandtab

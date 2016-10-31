@@ -4,7 +4,6 @@
 "
 " See the bottom of this file for copyright & license information.
 "
-" http://vi.stackexchange.com/q/2108/51
 
 "##########################################################
 " Initialize some stuff
@@ -44,7 +43,7 @@ endfor
 " ...:          Any other arguments will be eval-ed as-is for every new file
 "               opened right after running cmd.
 fun! globedit#run(cmd, pattern_list, ...)
-	let l:commands = a:0 > 0 ? a:1 : ''
+	let l:command = a:0 > 0 ? a:1 : ''
 
 	let l:found_one = 0
 
@@ -52,8 +51,8 @@ fun! globedit#run(cmd, pattern_list, ...)
 		for l:c in glob(l:p, 0, 1)
 			let l:found_one = 1
 			execute a:cmd . ' ' . l:c
-			if l:commands
-				eval(l:commands)
+			if l:command != ''
+				execute l:command
 			endif
 		endfor
 	endfor

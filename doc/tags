@@ -1,0 +1,10 @@
+:Edit	globedit.txt	/*:Edit*
+:Split	globedit.txt	/*:Split*
+:Tabedit	globedit.txt	/*:Tabedit*
+:Vsplit	globedit.txt	/*:Vsplit*
+g:multitabs_commands	globedit.txt	/*g:multitabs_commands*
+globedit#run()	globedit.txt	/*globedit#run()*
+globedit-commands	globedit.txt	/*globedit-commands*
+globedit-functions	globedit.txt	/*globedit-functions*
+globedit-options	globedit.txt	/*globedit-options*
+globedit.vim	globedit.txt	/*globedit.vim*
