@@ -1,3 +1,5 @@
+[![This project is considered stable](https://img.shields.io/badge/Status-stable-green.svg)](https://arp242.net/status/stable)
+
 Add variants of `:edit` and friends that can take a globbing pattern to open
 multiple files:
 
