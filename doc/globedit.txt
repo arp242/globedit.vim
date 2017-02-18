@@ -3,7 +3,7 @@ globedit.txt: Use globbing patterns for :edit, :tabedit, etc.
 ==============================================================================
 INTRODUCTION                                                   *globedit.vim*
 
-globedit.vim adds variants of `:edit` and friends that can take a globbing
+globedit.vim adds variants of |:edit| and friends that can take a globbing
 pattern to open multiple files:
 >
     :Edit plugin/*.vim doc/*.doc
@@ -15,11 +15,14 @@ Compare this to the default behaviour of `:edit *.vim`, which will either:
 
 - open a file named `*.vim` if there are no matches;
 - open the file if there is exactly one match;
-- error out with `E77: Too many file names ` if there are more than one
+- error out with `E77: Too many file names` if there are more than one
   matches.
 
 Based on my answer here, which also lists some other solutions:
 http://vi.stackexchange.com/q/2108/51
+
+By default it'll map |:Edit|, |:Tabedit|, |:Split|, and |:Vsplit|. You can use
+`:cabbr tabe Tabe` etc. to use it automatically.
 
 ==============================================================================
 OPTIONS                                                     *globedit-options*
@@ -67,7 +70,7 @@ globedit#run({cmd}, {pattern}, {command})                     *globedit#run()*
         Run Vim command {cmd} for all patterns in the list {pattern}. If no
         files are found an error is shown.
         If the optional argument {command} is given then that command will be
-        run with |execute| after opening each file. For example: >
+        run with |:execute| after opening each file. For example: >
           call globedit#run('tabedit', ['*.vim'], 'normal! 1G')
 
 
