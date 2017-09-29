@@ -50,7 +50,7 @@ fun! globedit#run(cmd, pattern_list, ...)
 	for l:p in a:pattern_list
 		for l:c in glob(l:p, 0, 1)
 			let l:found_one = 1
-			execute a:cmd . ' ' . l:c
+			execute a:cmd . ' ' . fnameescape(l:c)
 			if l:command != ''
 				execute l:command
 			endif
