@@ -26,6 +26,10 @@ fun! globedit#run(cmd, pattern_list, ...) abort
 	let l:command = a:0 > 0 ? a:1 : ''
 
 	let l:errs = []
+
+	let l:save_autochdir = &autochdir
+	set noautochdir
+
 	for l:p in a:pattern_list
 		if !s:has_glob(l:p)
 			let l:globs = [l:p]
@@ -44,6 +48,8 @@ fun! globedit#run(cmd, pattern_list, ...) abort
 			endif
 		endfor
 	endfor
+
+	let &autochdir = l:save_autochdir
 
 	if len(l:errs) > 0
 		echohl Error
