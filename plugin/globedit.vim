@@ -24,32 +24,32 @@ endfor
 "               opened right after running cmd.
 fun! globedit#run(cmd, pattern_list, ...) abort
 	let l:command = a:0 > 0 ? a:1 : ''
-
 	let l:errs = []
-
 	let l:save_autochdir = &autochdir
-	set noautochdir
+	try
+		set noautochdir
 
-	for l:p in a:pattern_list
-		if !s:has_glob(l:p)
-			let l:globs = [l:p]
-		else
-			let l:globs = glob(l:p, 0, 1)
-			if len(l:globs) is# 0
-				call add(l:errs, l:p)
-				continue
+		for l:p in a:pattern_list
+			if !s:has_glob(l:p)
+				let l:globs = [l:p]
+			else
+				let l:globs = glob(l:p, 0, 1)
+				if len(l:globs) is# 0
+					call add(l:errs, l:p)
+					continue
+				endif
 			endif
-		endif
 
-		for l:c in l:globs
-			exe a:cmd . ' ' . fnameescape(l:c)
-			if l:command isnot# ''
-				exe l:command
-			endif
+			for l:c in l:globs
+				exe a:cmd . ' ' . fnameescape(l:c)
+				if l:command isnot# ''
+					exe l:command
+				endif
+			endfor
 		endfor
-	endfor
-
-	let &autochdir = l:save_autochdir
+	finally
+		let &autochdir = l:save_autochdir
+	endtry
 
 	if len(l:errs) > 0
 		echohl Error
