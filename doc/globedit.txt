@@ -27,7 +27,7 @@ By default it'll map |:Edit|, |:Tabedit|, |:Split|, and |:Vsplit|. You can use
 ==============================================================================
 OPTIONS                                                     *globedit-options*
 
-*g:multitabs_commands*                                   (Boolean, default: 1)
+*g:globedit_commands*                                    (Boolean, default: 1)
 
         Which commands to make; this is a dict where the key is the Vim
         command name and the option value is the {command} to use. If the
@@ -37,11 +37,11 @@ OPTIONS                                                     *globedit-options*
         converted to uppercase.
 
         default value: >
-            let g:multitabs_commands = {
-                \ 'tabedit': '',
-                \ 'edit': '',
-                \ 'split': '',
-                \ 'vsplit': '',
+            let g:globedit_commands = #{
+                \ tabedit: '',
+                \ edit:    '',
+                \ split:   '',
+                \ vsplit:  '',
             \}
 <
         Default template is: >
