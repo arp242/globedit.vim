@@ -1,6 +1,6 @@
 scriptencoding utf-8
-if exists('g:globedit') | finish | endif
-let g:globedit = 1
+if exists('g:loaded_globedit') | finish | endif
+let g:loaded_globedit = 1
 let s:save_cpo = &cpo
 set cpo&vim
 
