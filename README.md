@@ -18,7 +18,7 @@ Compare this to the default behaviour of `:edit *.vim`, which will either:
 [Based on my answer here](http://vi.stackexchange.com/q/2108/51), which also
 lists some other solutions.
 
-By default it'll map `:Edit`, `:Tabedit`, `:Split`, and `:Vsplit`. You can use
-`:cabbr tabe Tabe` etc. to use it automatically.
+By default it'll map `:Edit`, `:Tabedit`, `:Read`, `:Split`, and `:Vsplit`. You
+can use `:cabbr tabe Tabe` etc. to use it automatically.
 
 See `:help globedit` for the full documentation.
