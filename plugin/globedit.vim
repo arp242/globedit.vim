@@ -10,6 +10,7 @@ if !exists('g:globedit_commands')
 		\ 'edit':    '',
 		\ 'split':   '',
 		\ 'vsplit':  '',
+		\ 'read':    '',
 	\}
 endif
 

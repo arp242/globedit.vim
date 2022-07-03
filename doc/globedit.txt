@@ -42,6 +42,7 @@ OPTIONS                                                     *globedit-options*
                 \ edit:    '',
                 \ split:   '',
                 \ vsplit:  '',
+                \ read:    '',
             \}
 <
         Default template is: >
@@ -55,9 +56,10 @@ COMMANDS                                                   *globedit-commands*
 *:Tabedit*
 *:Split*
 *:Vsplit*
+*:Read*
 
-        Like |:edit|, |:tabedit|, |:split|, and |:vsplit|, but will work with
-        any number of globbing patterns. For example: >
+        Like |:edit|, |:tabedit|, |:split|, |:vsplit|, and |:read|, but will
+        work with any number of globbing patterns. For example: >
             :Edit a.vim
             :Edit *.vim
             :Edit *.vim *.markdown
