@@ -5,18 +5,18 @@ let s:save_cpo = &cpo
 set cpo&vim
 
 if !exists('g:globedit_commands')
-	let g:globedit_commands = {
-		\ 'tabedit': '',
-		\ 'edit':    '',
-		\ 'split':   '',
-		\ 'vsplit':  '',
-		\ 'read':    '',
+	let g:globedit_commands = #{
+		\ tabedit: '',
+		\ edit:    '',
+		\ split:   '',
+		\ vsplit:  '',
+		\ read:    '$read',
 	\}
 endif
 
 let s:tpl = 'command! -bar -bang -nargs=+ -complete=file %s call globedit#run("%s", [<f-args>])'
 for [s:k, s:v] in items(g:globedit_commands)
-	exe printf(s:v != '' ? s:v : s:tpl, toupper(s:k[0]) . s:k[1:], s:k)
+	exe printf(s:tpl, toupper(s:k[0]) . s:k[1:], s:v)
 endfor
 
 " cmd:          Command to run (e.g. edit, tabedit, etc.).
